@@ -13,7 +13,7 @@ namespace PotterShoppingCart.Tests
             var expected = 100;
 
             //Act
-            var actaul = shoppingCart.CalculateFee(1, 0);
+            var actaul = shoppingCart.CalculateFee(1, 0, 0);
 
             //Assert
             Assert.AreEqual(expected, actaul);
@@ -27,7 +27,7 @@ namespace PotterShoppingCart.Tests
             var expected = 190;
 
             //Act
-            var actaul = shoppingCart.CalculateFee(1, 1);
+            var actaul = shoppingCart.CalculateFee(1, 1, 0);
 
             //Assert
             Assert.AreEqual(expected, actaul);
@@ -41,7 +41,7 @@ namespace PotterShoppingCart.Tests
             var expected = 270;
 
             //Act
-            var actaul = shoppingCart.CalculateFee(1, 1);
+            var actaul = shoppingCart.CalculateFee(1, 1, 1);
 
             //Assert
             Assert.AreEqual(expected, actaul);
@@ -50,10 +50,14 @@ namespace PotterShoppingCart.Tests
 
     public class ShoppingCart
     {
-        public double CalculateFee(int firstEpisodeCount, int secondEpisodeCount)
+        public double CalculateFee(int firstEpisodeCount, int secondEpisodeCount, int thirdEpisodeCount)
         {
             var fee = 0;
-            if (firstEpisodeCount == 1 && secondEpisodeCount == 1)
+            if (firstEpisodeCount == 1 && secondEpisodeCount == 1 && thirdEpisodeCount == 1)
+            {
+                fee = 270;
+            }
+            else if (firstEpisodeCount == 1 && secondEpisodeCount == 1)
             {
                 fee = 190;
             }
