@@ -128,19 +128,22 @@ namespace PotterShoppingCart.Tests
         public double CalculateFee()
         {
             var basePrize = 100;
-
-            var totalFee = products.Sum(x => x.Value * basePrize) * GetDiscount();
-
+            var totalFee = 0d;
+            for (int i = 1; i <= products.Keys.Max(); i++)
+            {
+                var setsCount = products.Count(product => product.Value >= i);
+                if (setsCount == 0)
+                    break;
+                totalFee += setsCount * basePrize * GetDiscountBy(setsCount);
+            }
             return totalFee;
         }
 
-        private double GetDiscount()
+        private double GetDiscountBy(int setCount)
         {
             var dicountDefined = SetDicountDefinition();
 
-            var totalCount = products.Count(product => product.Value == 1);
-
-            return dicountDefined[totalCount];
+            return dicountDefined[setCount];
         }
 
         private Dictionary<int, double> SetDicountDefinition()
