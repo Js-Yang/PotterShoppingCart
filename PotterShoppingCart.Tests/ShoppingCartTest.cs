@@ -53,20 +53,24 @@ namespace PotterShoppingCart.Tests
     {
         public double CalculateFee(int firstEpisodeCount, int secondEpisodeCount, int thirdEpisodeCount)
         {
-            var fee = 0d;
+            var discount = 1d;
+
             if (firstEpisodeCount == 1 && secondEpisodeCount == 1 && thirdEpisodeCount == 1)
             {
-                fee = (firstEpisodeCount * 100 + secondEpisodeCount * 100 + thirdEpisodeCount * 100) * 0.9;
+                discount = 0.9;
             }
             else if (firstEpisodeCount == 1 && secondEpisodeCount == 1 && thirdEpisodeCount == 0)
             {
-                fee = (firstEpisodeCount * 100 + secondEpisodeCount * 100) * 0.95;
+                discount = 0.95;
             }
             else if (firstEpisodeCount == 1 && secondEpisodeCount == 0 && thirdEpisodeCount == 0)
             {
-                fee = 100;
+                discount = 1;
             }
-            return fee;
+
+            var totalFee = (firstEpisodeCount * 100 + secondEpisodeCount * 100 + thirdEpisodeCount * 100) * discount;
+
+            return totalFee;
         }
     }
 }
