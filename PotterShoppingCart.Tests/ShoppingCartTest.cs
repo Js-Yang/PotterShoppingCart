@@ -13,8 +13,13 @@ namespace PotterShoppingCart.Tests
             var shoppingCart = new ShoppingCart();
             var expected = 100;
 
+            shoppingCart.AddProduct(1,1);
+            shoppingCart.AddProduct(2,0);
+            shoppingCart.AddProduct(3,0);
+            shoppingCart.AddProduct(4,0);
+
             //Act
-            var actaul = shoppingCart.CalculateFee(1, 0, 0, 0);
+            var actaul = shoppingCart.CalculateFee();
 
             //Assert
             Assert.AreEqual(expected, actaul);
@@ -27,8 +32,13 @@ namespace PotterShoppingCart.Tests
             var shoppingCart = new ShoppingCart();
             var expected = 190;
 
+            shoppingCart.AddProduct(1, 1);
+            shoppingCart.AddProduct(2, 1);
+            shoppingCart.AddProduct(3, 0);
+            shoppingCart.AddProduct(4, 0);
+
             //Act
-            var actaul = shoppingCart.CalculateFee(1, 1, 0, 0);
+            var actaul = shoppingCart.CalculateFee();
 
             //Assert
             Assert.AreEqual(expected, actaul);
@@ -41,8 +51,13 @@ namespace PotterShoppingCart.Tests
             var shoppingCart = new ShoppingCart();
             var expected = 270;
 
+            shoppingCart.AddProduct(1, 1);
+            shoppingCart.AddProduct(2, 1);
+            shoppingCart.AddProduct(3, 1);
+            shoppingCart.AddProduct(4, 0);
+
             //Act
-            var actaul = shoppingCart.CalculateFee(1, 1, 1, 0);
+            var actaul = shoppingCart.CalculateFee();
 
             //Assert
             Assert.AreEqual(expected, actaul);
@@ -55,8 +70,13 @@ namespace PotterShoppingCart.Tests
             var shoppingCart = new ShoppingCart();
             var expected = 320;
 
+            shoppingCart.AddProduct(1, 1);
+            shoppingCart.AddProduct(2, 1);
+            shoppingCart.AddProduct(3, 1);
+            shoppingCart.AddProduct(4, 1);
+
             //Act
-            var actaul = shoppingCart.CalculateFee(1, 1, 1, 1);
+            var actaul = shoppingCart.CalculateFee();
 
             //Assert
             Assert.AreEqual(expected, actaul);
@@ -65,32 +85,40 @@ namespace PotterShoppingCart.Tests
 
     public class ShoppingCart
     {
-        public double CalculateFee(int firstEpisodeCount, int secondEpisodeCount, int thirdEpisodeCount, int fourEpisodeCount)
-        {
-            var discount = GetDiscount(firstEpisodeCount, secondEpisodeCount, thirdEpisodeCount, fourEpisodeCount);
+        Dictionary<int,int> products = new Dictionary<int, int>();
 
+        public void AddProduct(int episode,int count)
+        {
+            products.Add(episode, count);
+        }
+
+        public double CalculateFee()
+        {
             var basePrize = 100;
-            var totalFee = (firstEpisodeCount * basePrize + secondEpisodeCount * basePrize + thirdEpisodeCount * basePrize + fourEpisodeCount * basePrize) * discount;
+
+            var discount = GetDiscount();
+
+            var totalFee = (products[1] * basePrize + products[2] * basePrize + products[3] * basePrize + products[4] * basePrize) * discount;
 
             return totalFee;
         }
 
-        private static double GetDiscount(int firstEpisodeCount, int secondEpisodeCount, int thirdEpisodeCount, int fourEpisodeCount)
+        private double GetDiscount()
         {
             var discount = 0d;
-            if (firstEpisodeCount == 1 && secondEpisodeCount == 1 && thirdEpisodeCount == 1 && fourEpisodeCount == 1)
+            if (products[1] == 1 && products[2] == 1 && products[3] == 1 && products[4] == 1)
             {
                 discount = 0.8;
             }
-            else if (firstEpisodeCount == 1 && secondEpisodeCount == 1 && thirdEpisodeCount == 1 && fourEpisodeCount == 0)
+            else if (products[1] == 1 && products[2] == 1 && products[3] == 1 && products[4] == 0)
             {
                 discount = 0.9;
             }
-            else if (firstEpisodeCount == 1 && secondEpisodeCount == 1 && thirdEpisodeCount == 0 && fourEpisodeCount == 0)
+            else if (products[1] == 1 && products[2] == 1 && products[3] == 0 && products[4] == 0)
             {
                 discount = 0.95;
             }
-            else if (firstEpisodeCount == 1 && secondEpisodeCount == 0 && thirdEpisodeCount == 0 && fourEpisodeCount == 0)
+            else if (products[1] == 1 && products[2] == 0 && products[3] == 0 && products[4] == 0)
             {
                 discount = 1;
             }
