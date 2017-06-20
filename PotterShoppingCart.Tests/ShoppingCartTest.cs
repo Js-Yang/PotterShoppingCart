@@ -14,7 +14,7 @@ namespace PotterShoppingCart.Tests
             var expected = 100;
 
             //Act
-            var actaul = shoppingCart.CalculateFee(1, 0, 0);
+            var actaul = shoppingCart.CalculateFee(1, 0, 0, 0);
 
             //Assert
             Assert.AreEqual(expected, actaul);
@@ -28,7 +28,7 @@ namespace PotterShoppingCart.Tests
             var expected = 190;
 
             //Act
-            var actaul = shoppingCart.CalculateFee(1, 1, 0);
+            var actaul = shoppingCart.CalculateFee(1, 1, 0, 0);
 
             //Assert
             Assert.AreEqual(expected, actaul);
@@ -42,7 +42,7 @@ namespace PotterShoppingCart.Tests
             var expected = 270;
 
             //Act
-            var actaul = shoppingCart.CalculateFee(1, 1, 1);
+            var actaul = shoppingCart.CalculateFee(1, 1, 1, 0);
 
             //Assert
             Assert.AreEqual(expected, actaul);
@@ -56,7 +56,7 @@ namespace PotterShoppingCart.Tests
             var expected = 320;
 
             //Act
-            var actaul = shoppingCart.CalculateFee(1, 1, 1);
+            var actaul = shoppingCart.CalculateFee(1, 1, 1, 1);
 
             //Assert
             Assert.AreEqual(expected, actaul);
@@ -65,27 +65,31 @@ namespace PotterShoppingCart.Tests
 
     public class ShoppingCart
     {
-        public double CalculateFee(int firstEpisodeCount, int secondEpisodeCount, int thirdEpisodeCount)
+        public double CalculateFee(int firstEpisodeCount, int secondEpisodeCount, int thirdEpisodeCount, int fourEpisodeCount)
         {
-            var discount = GetDiscount(firstEpisodeCount, secondEpisodeCount, thirdEpisodeCount);
+            var discount = GetDiscount(firstEpisodeCount, secondEpisodeCount, thirdEpisodeCount, fourEpisodeCount);
 
-            var totalFee = (firstEpisodeCount * 100 + secondEpisodeCount * 100 + thirdEpisodeCount * 100) * discount;
+            var totalFee = (firstEpisodeCount * 100 + secondEpisodeCount * 100 + thirdEpisodeCount * 100 + fourEpisodeCount * 100) * discount;
 
             return totalFee;
         }
 
-        private static double GetDiscount(int firstEpisodeCount, int secondEpisodeCount, int thirdEpisodeCount)
+        private static double GetDiscount(int firstEpisodeCount, int secondEpisodeCount, int thirdEpisodeCount, int fourEpisodeCount)
         {
             var discount = 0d;
-            if (firstEpisodeCount == 1 && secondEpisodeCount == 1 && thirdEpisodeCount == 1)
+            if (firstEpisodeCount == 1 && secondEpisodeCount == 1 && thirdEpisodeCount == 1 && fourEpisodeCount == 1)
+            {
+                discount = 0.8;
+            }
+            else if (firstEpisodeCount == 1 && secondEpisodeCount == 1 && thirdEpisodeCount == 1 && fourEpisodeCount == 0)
             {
                 discount = 0.9;
             }
-            else if (firstEpisodeCount == 1 && secondEpisodeCount == 1 && thirdEpisodeCount == 0)
+            else if (firstEpisodeCount == 1 && secondEpisodeCount == 1 && thirdEpisodeCount == 0 && fourEpisodeCount == 0)
             {
                 discount = 0.95;
             }
-            else if (firstEpisodeCount == 1 && secondEpisodeCount == 0 && thirdEpisodeCount == 0)
+            else if (firstEpisodeCount == 1 && secondEpisodeCount == 0 && thirdEpisodeCount == 0 && fourEpisodeCount == 0)
             {
                 discount = 1;
             }
