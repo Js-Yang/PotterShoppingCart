@@ -69,7 +69,8 @@ namespace PotterShoppingCart.Tests
         {
             var discount = GetDiscount(firstEpisodeCount, secondEpisodeCount, thirdEpisodeCount, fourEpisodeCount);
 
-            var totalFee = (firstEpisodeCount * 100 + secondEpisodeCount * 100 + thirdEpisodeCount * 100 + fourEpisodeCount * 100) * discount;
+            var basePrize = 100;
+            var totalFee = (firstEpisodeCount * basePrize + secondEpisodeCount * basePrize + thirdEpisodeCount * basePrize + fourEpisodeCount * basePrize) * discount;
 
             return totalFee;
         }
