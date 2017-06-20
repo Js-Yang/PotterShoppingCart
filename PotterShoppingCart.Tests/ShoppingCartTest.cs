@@ -53,8 +53,16 @@ namespace PotterShoppingCart.Tests
     {
         public double CalculateFee(int firstEpisodeCount, int secondEpisodeCount, int thirdEpisodeCount)
         {
-            var discount = 1d;
+            var discount = GetDiscount(firstEpisodeCount, secondEpisodeCount, thirdEpisodeCount);
 
+            var totalFee = (firstEpisodeCount * 100 + secondEpisodeCount * 100 + thirdEpisodeCount * 100) * discount;
+
+            return totalFee;
+        }
+
+        private static double GetDiscount(int firstEpisodeCount, int secondEpisodeCount, int thirdEpisodeCount)
+        {
+            var discount = 0d;
             if (firstEpisodeCount == 1 && secondEpisodeCount == 1 && thirdEpisodeCount == 1)
             {
                 discount = 0.9;
@@ -67,10 +75,7 @@ namespace PotterShoppingCart.Tests
             {
                 discount = 1;
             }
-
-            var totalFee = (firstEpisodeCount * 100 + secondEpisodeCount * 100 + thirdEpisodeCount * 100) * discount;
-
-            return totalFee;
+            return discount;
         }
     }
 }
