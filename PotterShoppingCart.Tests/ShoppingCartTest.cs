@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 
 namespace PotterShoppingCart.Tests
@@ -13,10 +14,10 @@ namespace PotterShoppingCart.Tests
             var shoppingCart = new ShoppingCart();
             var expected = 100;
 
-            shoppingCart.AddProduct(1,1);
-            shoppingCart.AddProduct(2,0);
-            shoppingCart.AddProduct(3,0);
-            shoppingCart.AddProduct(4,0);
+            shoppingCart.AddProduct(1, 1);
+            shoppingCart.AddProduct(2, 0);
+            shoppingCart.AddProduct(3, 0);
+            shoppingCart.AddProduct(4, 0);
 
             //Act
             var actaul = shoppingCart.CalculateFee();
@@ -85,9 +86,9 @@ namespace PotterShoppingCart.Tests
 
     public class ShoppingCart
     {
-        Dictionary<int,int> products = new Dictionary<int, int>();
+        Dictionary<int, int> products = new Dictionary<int, int>();
 
-        public void AddProduct(int episode,int count)
+        public void AddProduct(int episode, int count)
         {
             products.Add(episode, count);
         }
@@ -98,7 +99,7 @@ namespace PotterShoppingCart.Tests
 
             var discount = GetDiscount();
 
-            var totalFee = (products[1] * basePrize + products[2] * basePrize + products[3] * basePrize + products[4] * basePrize) * discount;
+            var totalFee = products.Sum(x => x.Value * basePrize) * discount;
 
             return totalFee;
         }
