@@ -122,21 +122,25 @@ namespace PotterShoppingCart.Tests
             var discount = 0d;
             var totalCount = products.Count(product => product.Value == 1);
 
-            if (totalCount == 4)
+            if (totalCount == 1)
             {
-                discount = 0.8;
-            }
-            else if (totalCount == 3)
-            {
-                discount = 0.9;
+                discount = 1;
             }
             else if (totalCount == 2)
             {
                 discount = 0.95;
             }
-            else if (totalCount == 1)
+            else if (totalCount == 3)
             {
-                discount = 1;
+                discount = 0.9;
+            }
+            else if (totalCount == 4)
+            {
+                discount = 0.8;
+            }
+            else if (totalCount == 5)
+            {
+                discount = 0.75;
             }
             return discount;
         }
