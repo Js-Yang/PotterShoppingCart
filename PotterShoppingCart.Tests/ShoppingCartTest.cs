@@ -122,7 +122,7 @@ namespace PotterShoppingCart.Tests
         }
 
         [Test]
-        public void CalculateFee_Buy_A_First_Episode_A_Second_Episode_TWO_ThirdEpisode_Should_Be_460()
+        public void CalculateFee_Buy_A_First_Episode_TWO_Second_Episode_TWO_ThirdEpisode_Should_Be_460()
         {
             //Arrange
             var cashier = new Cashier(SetDicountDefinition());
