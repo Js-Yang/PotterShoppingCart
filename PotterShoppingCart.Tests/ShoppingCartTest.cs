@@ -119,30 +119,17 @@ namespace PotterShoppingCart.Tests
 
         private double GetDiscount()
         {
-            var discount = 0d;
+            Dictionary<int, double> dicountDefined = new Dictionary<int, double>
+            {
+                {1, 1},
+                {2, 0.95},
+                {3, 0.9},
+                {4, 0.8},
+                {5, 0.75},
+            };
             var totalCount = products.Count(product => product.Value == 1);
 
-            if (totalCount == 1)
-            {
-                discount = 1;
-            }
-            else if (totalCount == 2)
-            {
-                discount = 0.95;
-            }
-            else if (totalCount == 3)
-            {
-                discount = 0.9;
-            }
-            else if (totalCount == 4)
-            {
-                discount = 0.8;
-            }
-            else if (totalCount == 5)
-            {
-                discount = 0.75;
-            }
-            return discount;
+            return dicountDefined[totalCount];
         }
     }
 }
