@@ -11,13 +11,14 @@ namespace PotterShoppingCart.Tests
         public void CalculateFee_Buy_A_First_Episode_Should_Be_100()
         {
             //Arrange
+            var cashier = new Cashier(SetDicountDefinition());
             var shoppingCart = new ShoppingCart();
             var expected = 100;
 
             shoppingCart.AddProduct(1, 1);
 
             //Act
-            var actaul = shoppingCart.CalculateFee();
+            var actaul = cashier.CalculateFee(shoppingCart.GetContent());
 
             //Assert
             Assert.AreEqual(expected, actaul);
@@ -27,6 +28,7 @@ namespace PotterShoppingCart.Tests
         public void CalculateFee_Buy_A_First_Episode_A_Second_Episode_Should_Be_190()
         {
             //Arrange
+            var cashier = new Cashier(SetDicountDefinition());
             var shoppingCart = new ShoppingCart();
             var expected = 190;
 
@@ -34,7 +36,7 @@ namespace PotterShoppingCart.Tests
             shoppingCart.AddProduct(2, 1);
 
             //Act
-            var actaul = shoppingCart.CalculateFee();
+            var actaul = cashier.CalculateFee(shoppingCart.GetContent());
 
             //Assert
             Assert.AreEqual(expected, actaul);
@@ -44,6 +46,7 @@ namespace PotterShoppingCart.Tests
         public void CalculateFee_Buy_A_First_Episode_A_Second_Episode_A_ThirdEpisode_Should_Be_270()
         {
             //Arrange
+            var cashier = new Cashier(SetDicountDefinition());
             var shoppingCart = new ShoppingCart();
             var expected = 270;
 
@@ -52,7 +55,7 @@ namespace PotterShoppingCart.Tests
             shoppingCart.AddProduct(3, 1);
 
             //Act
-            var actaul = shoppingCart.CalculateFee();
+            var actaul = cashier.CalculateFee(shoppingCart.GetContent());
 
             //Assert
             Assert.AreEqual(expected, actaul);
@@ -62,6 +65,7 @@ namespace PotterShoppingCart.Tests
         public void CalculateFee_Buy_A_First_Episode_A_Second_Episode_A_ThirdEpisode_A_FourEpisode_Should_Be_320()
         {
             //Arrange
+            var cashier = new Cashier(SetDicountDefinition());
             var shoppingCart = new ShoppingCart();
             var expected = 320;
 
@@ -71,7 +75,7 @@ namespace PotterShoppingCart.Tests
             shoppingCart.AddProduct(4, 1);
 
             //Act
-            var actaul = shoppingCart.CalculateFee();
+            var actaul = cashier.CalculateFee(shoppingCart.GetContent());
 
             //Assert
             Assert.AreEqual(expected, actaul);
@@ -81,6 +85,7 @@ namespace PotterShoppingCart.Tests
         public void CalculateFee_Buy_A_First_Episode_A_Second_Episode_A_ThirdEpisode_A_FourEpisode_A_FifthEpisode_Should_Be_375()
         {
             //Arrange
+            var cashier = new Cashier(SetDicountDefinition());
             var shoppingCart = new ShoppingCart();
             var expected = 375;
 
@@ -91,7 +96,7 @@ namespace PotterShoppingCart.Tests
             shoppingCart.AddProduct(5, 1);
 
             //Act
-            var actaul = shoppingCart.CalculateFee();
+            var actaul = cashier.CalculateFee(shoppingCart.GetContent());
 
             //Assert
             Assert.AreEqual(expected, actaul);
@@ -101,6 +106,7 @@ namespace PotterShoppingCart.Tests
         public void CalculateFee_Buy_A_First_Episode_A_Second_Episode_TWO_ThirdEpisode_Should_Be_370()
         {
             //Arrange
+            var cashier = new Cashier(SetDicountDefinition());
             var shoppingCart = new ShoppingCart();
             var expected = 370;
 
@@ -109,23 +115,54 @@ namespace PotterShoppingCart.Tests
             shoppingCart.AddProduct(3, 2);
 
             //Act
-            var actaul = shoppingCart.CalculateFee();
+            var actaul = cashier.CalculateFee(shoppingCart.GetContent());
 
             //Assert
             Assert.AreEqual(expected, actaul);
         }
-    }
 
-    public class ShoppingCart
-    {
-        Dictionary<int, int> products = new Dictionary<int, int>();
-
-        public void AddProduct(int episode, int count)
+        [Test]
+        public void CalculateFee_Buy_A_First_Episode_A_Second_Episode_TWO_ThirdEpisode_Should_Be_460()
         {
-            products.Add(episode, count);
+            //Arrange
+            var cashier = new Cashier(SetDicountDefinition());
+            var shoppingCart = new ShoppingCart();
+            var expected = 460;
+
+            shoppingCart.AddProduct(1, 1);
+            shoppingCart.AddProduct(2, 2);
+            shoppingCart.AddProduct(3, 2);
+
+            //Act
+            var actaul = cashier.CalculateFee(shoppingCart.GetContent());
+
+            //Assert
+            Assert.AreEqual(expected, actaul);
         }
 
-        public double CalculateFee()
+        private Dictionary<int, double> SetDicountDefinition()
+        {
+            return new Dictionary<int, double>
+            {
+                {1, 1},
+                {2, 0.95},
+                {3, 0.9},
+                {4, 0.8},
+                {5, 0.75},
+            };
+        }
+    }
+
+    public class Cashier
+    {
+        private Dictionary<int, double> discountDefinition;
+
+        public Cashier(Dictionary<int, double> dicountDefinition)
+        {
+            this.discountDefinition = dicountDefinition;
+        }
+
+        public double CalculateFee(Dictionary<int, int> products)
         {
             var basePrize = 100;
             var totalFee = 0d;
@@ -141,21 +178,22 @@ namespace PotterShoppingCart.Tests
 
         private double GetDiscountBy(int setCount)
         {
-            var dicountDefined = SetDicountDefinition();
+            return discountDefinition[setCount];
+        }
+    }
 
-            return dicountDefined[setCount];
+    public class ShoppingCart
+    {
+        private Dictionary<int, int> products = new Dictionary<int, int>();
+
+        public void AddProduct(int episode, int count)
+        {
+            products.Add(episode, count);
         }
 
-        private Dictionary<int, double> SetDicountDefinition()
+        public Dictionary<int, int> GetContent()
         {
-            return new Dictionary<int, double>
-            {
-                {1, 1},
-                {2, 0.95},
-                {3, 0.9},
-                {4, 0.8},
-                {5, 0.75},
-            };
+            return products;
         }
     }
 }
