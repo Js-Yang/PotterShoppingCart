@@ -39,7 +39,11 @@ namespace PotterShoppingCart.Tests
         public double CalculateFee(int firstEpisodeCount, int secondEpisodeCount)
         {
             var fee = 0;
-            if (firstEpisodeCount == 1)
+            if (firstEpisodeCount == 1 && secondEpisodeCount == 1)
+            {
+                fee = 190;
+            }
+            else if (firstEpisodeCount == 1)
             {
                 fee = 100;
             }
