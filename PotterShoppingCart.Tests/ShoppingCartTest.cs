@@ -97,9 +97,7 @@ namespace PotterShoppingCart.Tests
         {
             var basePrize = 100;
 
-            var discount = GetDiscount();
-
-            var totalFee = products.Sum(x => x.Value * basePrize) * discount;
+            var totalFee = products.Sum(x => x.Value * basePrize) * GetDiscount();
 
             return totalFee;
         }
