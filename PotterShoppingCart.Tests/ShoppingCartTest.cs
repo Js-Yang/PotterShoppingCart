@@ -15,9 +15,6 @@ namespace PotterShoppingCart.Tests
             var expected = 100;
 
             shoppingCart.AddProduct(1, 1);
-            shoppingCart.AddProduct(2, 0);
-            shoppingCart.AddProduct(3, 0);
-            shoppingCart.AddProduct(4, 0);
 
             //Act
             var actaul = shoppingCart.CalculateFee();
@@ -35,8 +32,6 @@ namespace PotterShoppingCart.Tests
 
             shoppingCart.AddProduct(1, 1);
             shoppingCart.AddProduct(2, 1);
-            shoppingCart.AddProduct(3, 0);
-            shoppingCart.AddProduct(4, 0);
 
             //Act
             var actaul = shoppingCart.CalculateFee();
@@ -55,7 +50,6 @@ namespace PotterShoppingCart.Tests
             shoppingCart.AddProduct(1, 1);
             shoppingCart.AddProduct(2, 1);
             shoppingCart.AddProduct(3, 1);
-            shoppingCart.AddProduct(4, 0);
 
             //Act
             var actaul = shoppingCart.CalculateFee();
