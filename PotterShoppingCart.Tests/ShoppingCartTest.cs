@@ -155,11 +155,11 @@ namespace PotterShoppingCart.Tests
 
     public class Cashier
     {
-        private Dictionary<int, double> discountDefinition;
+        private Dictionary<int, double> discountRule;
 
-        public Cashier(Dictionary<int, double> dicountDefinition)
+        public Cashier(Dictionary<int, double> dicountRule)
         {
-            this.discountDefinition = dicountDefinition;
+            this.discountRule = dicountRule;
         }
 
         public double CalculateFee(Dictionary<int, int> products)
@@ -171,14 +171,9 @@ namespace PotterShoppingCart.Tests
                 var setsCount = products.Count(product => product.Value >= i);
                 if (setsCount == 0)
                     break;
-                totalFee += setsCount * basePrize * GetDiscountBy(setsCount);
+                totalFee += setsCount * basePrize * discountRule[setsCount];
             }
             return totalFee;
-        }
-
-        private double GetDiscountBy(int setCount)
-        {
-            return discountDefinition[setCount];
         }
     }
 
