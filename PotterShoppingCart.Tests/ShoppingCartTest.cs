@@ -77,7 +77,6 @@ namespace PotterShoppingCart.Tests
             Assert.AreEqual(expected, actaul);
         }
 
-
         [Test]
         public void CalculateFee_Buy_A_First_Episode_A_Second_Episode_A_ThirdEpisode_A_FourEpisode_A_FifthEpisode_Should_Be_375()
         {
@@ -90,6 +89,24 @@ namespace PotterShoppingCart.Tests
             shoppingCart.AddProduct(3, 1);
             shoppingCart.AddProduct(4, 1);
             shoppingCart.AddProduct(5, 1);
+
+            //Act
+            var actaul = shoppingCart.CalculateFee();
+
+            //Assert
+            Assert.AreEqual(expected, actaul);
+        }
+
+        [Test]
+        public void CalculateFee_Buy_A_First_Episode_A_Second_Episode_TWO_ThirdEpisode_Should_Be_370()
+        {
+            //Arrange
+            var shoppingCart = new ShoppingCart();
+            var expected = 370;
+
+            shoppingCart.AddProduct(1, 1);
+            shoppingCart.AddProduct(2, 1);
+            shoppingCart.AddProduct(3, 2);
 
             //Act
             var actaul = shoppingCart.CalculateFee();
