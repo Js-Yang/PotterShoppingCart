@@ -20,11 +20,25 @@ namespace PotterShoppingCart.Tests
         }
 
         [Test]
-        public void CalculateFee_Buy_A_First_Episode_And_Second_Episode_Should_Be_190()
+        public void CalculateFee_Buy_A_First_Episode_And_A_Second_Episode_Should_Be_190()
         {
             //Arrange
             var shoppingCart = new ShoppingCart();
             var expected = 190;
+
+            //Act
+            var actaul = shoppingCart.CalculateFee(1, 1);
+
+            //Assert
+            Assert.AreEqual(expected, actaul);
+        }
+
+        [Test]
+        public void CalculateFee_Buy_A_First_Episode_And_A_Second_Episode_And_A_ThirdEpisode_Should_Be_270()
+        {
+            //Arrange
+            var shoppingCart = new ShoppingCart();
+            var expected = 270;
 
             //Act
             var actaul = shoppingCart.CalculateFee(1, 1);
