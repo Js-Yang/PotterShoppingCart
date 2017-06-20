@@ -119,7 +119,16 @@ namespace PotterShoppingCart.Tests
 
         private double GetDiscount()
         {
-            Dictionary<int, double> dicountDefined = new Dictionary<int, double>
+            var dicountDefined = SetDicountDefinition();
+
+            var totalCount = products.Count(product => product.Value == 1);
+
+            return dicountDefined[totalCount];
+        }
+
+        private Dictionary<int, double> SetDicountDefinition()
+        {
+            return new Dictionary<int, double>
             {
                 {1, 1},
                 {2, 0.95},
@@ -127,9 +136,6 @@ namespace PotterShoppingCart.Tests
                 {4, 0.8},
                 {5, 0.75},
             };
-            var totalCount = products.Count(product => product.Value == 1);
-
-            return dicountDefined[totalCount];
         }
     }
 }
