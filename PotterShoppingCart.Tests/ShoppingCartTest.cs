@@ -24,7 +24,7 @@ namespace PotterShoppingCart.Tests
     {
         public double CalculateFee()
         {
-            return 0;
+            return 100;
         }
     }
 }
