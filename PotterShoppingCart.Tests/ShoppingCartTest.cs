@@ -105,19 +105,21 @@ namespace PotterShoppingCart.Tests
         private double GetDiscount()
         {
             var discount = 0d;
-            if (products[1] == 1 && products[2] == 1 && products[3] == 1 && products[4] == 1)
+            var totalCount = products.Count(product => product.Value == 1);
+
+            if (totalCount == 4)
             {
                 discount = 0.8;
             }
-            else if (products[1] == 1 && products[2] == 1 && products[3] == 1 && products[4] == 0)
+            else if (totalCount == 3)
             {
                 discount = 0.9;
             }
-            else if (products[1] == 1 && products[2] == 1 && products[3] == 0 && products[4] == 0)
+            else if (totalCount == 2)
             {
                 discount = 0.95;
             }
-            else if (products[1] == 1 && products[2] == 0 && products[3] == 0 && products[4] == 0)
+            else if (totalCount == 1)
             {
                 discount = 1;
             }
