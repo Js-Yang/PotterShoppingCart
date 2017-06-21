@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using NUnit.Framework;
 
 namespace PotterShoppingCart.Tests
 {
     [TestFixture]
-    public class ShoppingCartTest
+    public class CashierTest
     {
         [Test]
         public void CalculateFee_Buy_A_First_Episode_Should_Be_100()
@@ -150,45 +149,6 @@ namespace PotterShoppingCart.Tests
                 {4, 0.8},
                 {5, 0.75},
             };
-        }
-    }
-
-    public class Cashier
-    {
-        private Dictionary<int, double> discountRule;
-
-        public Cashier(Dictionary<int, double> dicountRule)
-        {
-            this.discountRule = dicountRule;
-        }
-
-        public double CalculateFee(Dictionary<int, int> products)
-        {
-            var basePrize = 100;
-            var totalFee = 0d;
-            for (int i = 1; i <= products.Keys.Max(); i++)
-            {
-                var setsCount = products.Count(product => product.Value >= i);
-                if (setsCount == 0)
-                    break;
-                totalFee += setsCount * basePrize * discountRule[setsCount];
-            }
-            return totalFee;
-        }
-    }
-
-    public class ShoppingCart
-    {
-        private Dictionary<int, int> products = new Dictionary<int, int>();
-
-        public void AddProduct(int episode, int count)
-        {
-            products.Add(episode, count);
-        }
-
-        public Dictionary<int, int> GetContent()
-        {
-            return products;
         }
     }
 }
