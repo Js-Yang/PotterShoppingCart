@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace PotterShoppingCart.Tests
 {
-    [TestFixture]
+    [TestClass]
     public class CashierTest
     {
-        [Test]
+        [TestMethod]
         public void CalculateFee_Buy_A_First_Episode_Should_Be_100()
         {
             //Arrange
@@ -23,7 +23,7 @@ namespace PotterShoppingCart.Tests
             Assert.AreEqual(expected, actaul);
         }
 
-        [Test]
+        [TestMethod]
         public void CalculateFee_Buy_A_First_Episode_A_Second_Episode_Should_Be_190()
         {
             //Arrange
@@ -41,7 +41,7 @@ namespace PotterShoppingCart.Tests
             Assert.AreEqual(expected, actaul);
         }
 
-        [Test]
+        [TestMethod]
         public void CalculateFee_Buy_A_First_Episode_A_Second_Episode_A_ThirdEpisode_Should_Be_270()
         {
             //Arrange
@@ -60,7 +60,7 @@ namespace PotterShoppingCart.Tests
             Assert.AreEqual(expected, actaul);
         }
 
-        [Test]
+        [TestMethod]
         public void CalculateFee_Buy_A_First_Episode_A_Second_Episode_A_ThirdEpisode_A_FourEpisode_Should_Be_320()
         {
             //Arrange
@@ -80,7 +80,7 @@ namespace PotterShoppingCart.Tests
             Assert.AreEqual(expected, actaul);
         }
 
-        [Test]
+        [TestMethod]
         public void CalculateFee_Buy_A_First_Episode_A_Second_Episode_A_ThirdEpisode_A_FourEpisode_A_FifthEpisode_Should_Be_375()
         {
             //Arrange
@@ -101,7 +101,7 @@ namespace PotterShoppingCart.Tests
             Assert.AreEqual(expected, actaul);
         }
 
-        [Test]
+        [TestMethod]
         public void CalculateFee_Buy_A_First_Episode_A_Second_Episode_TWO_ThirdEpisode_Should_Be_370()
         {
             //Arrange
@@ -120,7 +120,7 @@ namespace PotterShoppingCart.Tests
             Assert.AreEqual(expected, actaul);
         }
 
-        [Test]
+        [TestMethod]
         public void CalculateFee_Buy_A_First_Episode_TWO_Second_Episode_TWO_ThirdEpisode_Should_Be_460()
         {
             //Arrange
