@@ -14,7 +14,7 @@ namespace PotterShoppingCart.Tests
             var shoppingCart = new ShoppingCart();
             var expected = 100;
 
-            shoppingCart.AddProduct(1, 1);
+            shoppingCart.AddProduct((int)HarryPotterBooks.FirstEpisode, 1);
 
             //Act
             var actaul = cashier.CalculateFee(shoppingCart.GetContent());
@@ -31,8 +31,8 @@ namespace PotterShoppingCart.Tests
             var shoppingCart = new ShoppingCart();
             var expected = 190;
 
-            shoppingCart.AddProduct(1, 1);
-            shoppingCart.AddProduct(2, 1);
+            shoppingCart.AddProduct((int)HarryPotterBooks.FirstEpisode, 1);
+            shoppingCart.AddProduct((int)HarryPotterBooks.SecondEpisode, 1);
 
             //Act
             var actaul = cashier.CalculateFee(shoppingCart.GetContent());
@@ -49,9 +49,9 @@ namespace PotterShoppingCart.Tests
             var shoppingCart = new ShoppingCart();
             var expected = 270;
 
-            shoppingCart.AddProduct(1, 1);
-            shoppingCart.AddProduct(2, 1);
-            shoppingCart.AddProduct(3, 1);
+            shoppingCart.AddProduct((int)HarryPotterBooks.FirstEpisode, 1);
+            shoppingCart.AddProduct((int)HarryPotterBooks.SecondEpisode, 1);
+            shoppingCart.AddProduct((int)HarryPotterBooks.ThirdEpisode, 1);
 
             //Act
             var actaul = cashier.CalculateFee(shoppingCart.GetContent());
@@ -68,10 +68,10 @@ namespace PotterShoppingCart.Tests
             var shoppingCart = new ShoppingCart();
             var expected = 320;
 
-            shoppingCart.AddProduct(1, 1);
-            shoppingCart.AddProduct(2, 1);
-            shoppingCart.AddProduct(3, 1);
-            shoppingCart.AddProduct(4, 1);
+            shoppingCart.AddProduct((int)HarryPotterBooks.FirstEpisode, 1);
+            shoppingCart.AddProduct((int)HarryPotterBooks.SecondEpisode, 1);
+            shoppingCart.AddProduct((int)HarryPotterBooks.ThirdEpisode, 1);
+            shoppingCart.AddProduct((int)HarryPotterBooks.FourthEpisode, 1);
 
             //Act
             var actaul = cashier.CalculateFee(shoppingCart.GetContent());
@@ -88,11 +88,11 @@ namespace PotterShoppingCart.Tests
             var shoppingCart = new ShoppingCart();
             var expected = 375;
 
-            shoppingCart.AddProduct(1, 1);
-            shoppingCart.AddProduct(2, 1);
-            shoppingCart.AddProduct(3, 1);
-            shoppingCart.AddProduct(4, 1);
-            shoppingCart.AddProduct(5, 1);
+            shoppingCart.AddProduct((int)HarryPotterBooks.FirstEpisode, 1);
+            shoppingCart.AddProduct((int)HarryPotterBooks.SecondEpisode, 1);
+            shoppingCart.AddProduct((int)HarryPotterBooks.ThirdEpisode, 1);
+            shoppingCart.AddProduct((int)HarryPotterBooks.FourthEpisode, 1);
+            shoppingCart.AddProduct((int)HarryPotterBooks.FifthEpisode, 1);
 
             //Act
             var actaul = cashier.CalculateFee(shoppingCart.GetContent());
@@ -109,9 +109,9 @@ namespace PotterShoppingCart.Tests
             var shoppingCart = new ShoppingCart();
             var expected = 370;
 
-            shoppingCart.AddProduct(1, 1);
-            shoppingCart.AddProduct(2, 1);
-            shoppingCart.AddProduct(3, 2);
+            shoppingCart.AddProduct((int)HarryPotterBooks.FirstEpisode, 1);
+            shoppingCart.AddProduct((int)HarryPotterBooks.SecondEpisode, 1);
+            shoppingCart.AddProduct((int)HarryPotterBooks.ThirdEpisode, 2);
 
             //Act
             var actaul = cashier.CalculateFee(shoppingCart.GetContent());
@@ -128,9 +128,9 @@ namespace PotterShoppingCart.Tests
             var shoppingCart = new ShoppingCart();
             var expected = 460;
 
-            shoppingCart.AddProduct(1, 1);
-            shoppingCart.AddProduct(2, 2);
-            shoppingCart.AddProduct(3, 2);
+            shoppingCart.AddProduct((int)HarryPotterBooks.FirstEpisode, 1);
+            shoppingCart.AddProduct((int)HarryPotterBooks.SecondEpisode, 2);
+            shoppingCart.AddProduct((int)HarryPotterBooks.ThirdEpisode, 2);
 
             //Act
             var actaul = cashier.CalculateFee(shoppingCart.GetContent());
