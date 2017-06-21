@@ -10,7 +10,7 @@ namespace PotterShoppingCart.Tests
         public void CalculateFee_Buy_A_First_Episode_Should_Be_100()
         {
             //Arrange
-            var cashier = new Cashier(GetDicountDefinition());
+            var cashier = new Cashier(GetDicountRule());
             var shoppingCart = new ShoppingCart();
             var expected = 100;
 
@@ -27,7 +27,7 @@ namespace PotterShoppingCart.Tests
         public void CalculateFee_Buy_A_First_Episode_A_Second_Episode_Should_Be_190()
         {
             //Arrange
-            var cashier = new Cashier(GetDicountDefinition());
+            var cashier = new Cashier(GetDicountRule());
             var shoppingCart = new ShoppingCart();
             var expected = 190;
 
@@ -45,7 +45,7 @@ namespace PotterShoppingCart.Tests
         public void CalculateFee_Buy_A_First_Episode_A_Second_Episode_A_ThirdEpisode_Should_Be_270()
         {
             //Arrange
-            var cashier = new Cashier(GetDicountDefinition());
+            var cashier = new Cashier(GetDicountRule());
             var shoppingCart = new ShoppingCart();
             var expected = 270;
 
@@ -64,7 +64,7 @@ namespace PotterShoppingCart.Tests
         public void CalculateFee_Buy_A_First_Episode_A_Second_Episode_A_ThirdEpisode_A_FourEpisode_Should_Be_320()
         {
             //Arrange
-            var cashier = new Cashier(GetDicountDefinition());
+            var cashier = new Cashier(GetDicountRule());
             var shoppingCart = new ShoppingCart();
             var expected = 320;
 
@@ -84,7 +84,7 @@ namespace PotterShoppingCart.Tests
         public void CalculateFee_Buy_A_First_Episode_A_Second_Episode_A_ThirdEpisode_A_FourEpisode_A_FifthEpisode_Should_Be_375()
         {
             //Arrange
-            var cashier = new Cashier(GetDicountDefinition());
+            var cashier = new Cashier(GetDicountRule());
             var shoppingCart = new ShoppingCart();
             var expected = 375;
 
@@ -105,7 +105,7 @@ namespace PotterShoppingCart.Tests
         public void CalculateFee_Buy_A_First_Episode_A_Second_Episode_TWO_ThirdEpisode_Should_Be_370()
         {
             //Arrange
-            var cashier = new Cashier(GetDicountDefinition());
+            var cashier = new Cashier(GetDicountRule());
             var shoppingCart = new ShoppingCart();
             var expected = 370;
 
@@ -124,7 +124,7 @@ namespace PotterShoppingCart.Tests
         public void CalculateFee_Buy_A_First_Episode_TWO_Second_Episode_TWO_ThirdEpisode_Should_Be_460()
         {
             //Arrange
-            var cashier = new Cashier(GetDicountDefinition());
+            var cashier = new Cashier(GetDicountRule());
             var shoppingCart = new ShoppingCart();
             var expected = 460;
 
@@ -139,7 +139,7 @@ namespace PotterShoppingCart.Tests
             Assert.AreEqual(expected, actaul);
         }
 
-        private Dictionary<int, double> GetDicountDefinition()
+        private Dictionary<int, double> GetDicountRule()
         {
             return new Dictionary<int, double>
             {
